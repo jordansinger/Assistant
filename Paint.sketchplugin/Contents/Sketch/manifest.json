@@ -1,0 +1,21 @@
+{
+  "name" : "Paint",
+  "description" : "Talk to Sketch",
+  "version" : "1.0",
+  "author" : "Jordan Singer",
+  "authorEmail" : "singer.jordan@gmail.com",
+  "appcast": "https://paint-ai.herokuapp.com/appcast.xml",
+  "commands" : [
+    {
+      "script": "paint.js",
+      "handler": "settings",
+      "shortcut": "cmd shift i",
+      "name": "Paint",
+      "identifier": "settings"
+      }
+  ],
+  "menu": {
+    "isRoot": true,
+    "items": ["settings"]
+  }
+}
