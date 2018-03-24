@@ -84,7 +84,7 @@ function settings(context){
 
 function send_message(message) {
   var request = NSMutableURLRequest.new();
-  var url = encodeURI("https://paint-ai.herokuapp.com/incoming?message=" + encodeURIComponent(message));
+  var url = encodeURI("https://ai.paint.design/incoming?message=" + encodeURIComponent(message));
   [request setURL: [NSURL URLWithString: url]];
   [request setHTTPMethod: @"GET"];
   var error = null;
@@ -107,6 +107,10 @@ function process_action(response) {
 
   if(details["draw"]) {
     draw_shape(details);
+  }
+
+  if(details["svg"] != null) {
+    insert_svg(details["svg"]);
   }
 }
 
@@ -138,7 +142,7 @@ function draw_shape(details) {
           shape = MSTriangleShape.alloc().init();
           break;
       default:
-          break;
+          return;
   }
 
   // determine the dimensions
@@ -166,12 +170,42 @@ function draw_shape(details) {
   fill.color = MSColor.colorWithRed_green_blue_alpha(color[0] / 255, color[1] / 255, color[2] / 255, 1);
 
   // If an artboard is selected place it there otherwise put it in the page
-  if (artboard) {
-    artboard.addLayers([shapeGroup]);
-  } else {
-    page.addLayers([shapeGroup]);
-  }
+  add_to_artboard(shapeGroup);
 
   // Select the created shape
   shapeGroup.setIsSelected(true);
+}
+
+function insert_svg(url) {
+  var logoURL = [NSURL URLWithString:url];
+  var request = [NSURLRequest requestWithURL:logoURL];
+  var response = NSURLConnection.sendSynchronousRequest_returningResponse_error(request, null, null);
+
+  if (response.length() == 0) {
+    [doc showMessage:'No logo with shortname found.'];
+  }
+  else {
+    var svgImporter = MSSVGImporter.svgImporter();
+    svgImporter.prepareToImportFromURL(logoURL);
+    var importedSVGLayer = svgImporter.importAsLayer();
+    importedSVGLayer.name = "SVG";
+
+    var svgFrame = importedSVGLayer.frame();
+    var ratio = svgFrame.width() / svgFrame.height();
+
+    [svgFrame setX:0];
+    [svgFrame setY:0];
+    [svgFrame setWidth:svgFrame.width()];
+    [svgFrame setHeight:svgFrame.height()];
+
+    add_to_artboard(importedSVGLayer);
+  }
+}
+
+function add_to_artboard(object) {
+  if (artboard) {
+    artboard.addLayers([object]);
+  } else {
+    page.addLayers([object]);
+  }
 }
