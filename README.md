@@ -72,7 +72,7 @@ You can add color to your shapes using the following examples:
 
 While drawing shapes, you can include dimensions.
 
-Dimensions are found in your input listed in order of width, height. For shape
+Dimensions are found in your input listed in order of width first, then height.
 
 You can add dimensions to your shapes using the following examples:
 
