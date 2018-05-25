@@ -14,10 +14,10 @@ Assistant is Sketch plugin that lets you add shapes and icons to your document s
 > "Insert a heart icon"
 
 - [How it works](#how-it-works)
-  - [Shapes](#shapes)
-    - [Colors](#colors)
-    - [Dimensions](#dimensions)
-  - [Icons](#icons)
+- [Shapes](#shapes)
+  - [Colors](#colors)
+  - [Dimensions](#dimensions)
+- [Icons](#icons)
 
 ## How it works
 Assistant is powered by a private API which translates your words into instructions that Sketch can understand. It uses [Wit.ai](https://wit.ai) for natural language processing.
