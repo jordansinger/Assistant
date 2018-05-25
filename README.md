@@ -5,7 +5,9 @@
 
 [Download the Sketch plugin](https://github.com/jordansinger/Assistant/releases/latest)
 
-Assistant is Sketch plugin that lets you add shapes and icons to your document simply by saying what you want:
+Assistant is a Sketch plugin that lets you add shapes and icons to your document simply by saying what you want
+
+See an demo [here](https://twitter.com/jsngr/status/972967984628228098)
 
 > "Draw a red rectangle that is 200px x 300px"
 
