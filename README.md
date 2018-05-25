@@ -1,3 +1,5 @@
+![alt text](https://paint.design/assets/images/Assistant.png "Assistant")
+
 # Assistant
 ### Talk to Sketch
 Assistant is Sketch plugin that lets you add shapes and icons to your document simply by saying what you want:
