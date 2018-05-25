@@ -2,6 +2,9 @@
 
 # Assistant
 ### Talk to Sketch
+
+[Download the Sketch plugin](https://github.com/jordansinger/Assistant/releases/latest)
+
 Assistant is Sketch plugin that lets you add shapes and icons to your document simply by saying what you want:
 
 > "Draw a red rectangle that is 200px x 300px"
