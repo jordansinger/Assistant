@@ -24,6 +24,10 @@ Assistant is powered by a private API which translates your words into instructi
 
 Assistant currently supports adding [shapes](#shapes) and [icons](#icons) to your Sketch document.
 
+Once installed in Sketch, you can access Assistant using the keyboard shortcut **CMD** + **Shift** + **i**, or via the Plugins menu.
+
+![alt text](https://paint.design/assets/images/Talk.png "Talk to Sketch")
+
 ## Shapes
 Assistant supports adding shapes to your document. In addition to defining the shape, you can determine the [color](#colors) and [dimensions](#dimensions) as well.
 
