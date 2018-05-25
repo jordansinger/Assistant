@@ -1,16 +1,17 @@
 {
-  "name" : "Paint",
+  "name" : "Assistant",
   "description" : "Talk to Sketch",
-  "version" : "1.0.1",
-  "author" : "Jordan Singer",
+  "icon": "icon.png",
+  "version" : "1.0.2",
+  "author" : "Paint",
   "authorEmail" : "singer.jordan@gmail.com",
   "appcast": "https://ai.paint.design/appcast.xml",
   "commands" : [
     {
-      "script": "paint.js",
+      "script": "assistant.js",
       "handler": "settings",
       "shortcut": "cmd shift i",
-      "name": "Paint",
+      "name": "Assistant",
       "identifier": "settings"
       }
   ],

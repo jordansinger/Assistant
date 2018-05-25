@@ -15,71 +15,17 @@ function initVars(context) {
   app = [NSApplication sharedApplication];
 }
 
-function createWindow(context) {
+function settings(context){
   initVars(context);
 
-  // Setup the window
-  var alert = COSAlertWindow.new();
-  alert.setMessageText("Paint")
-  alert.addButtonWithTitle("Ok");
-  alert.addButtonWithTitle("Cancel");
+  var message = sketch.getStringFromUser("Talk to Sketch", 'draw a rectangle');
 
-
-  // Create the main view
-  var viewWidth = 400;
-  var viewHeight = 70;
-  var viewSpacer = 10;
-  var view = NSView.alloc().initWithFrame(NSMakeRect(0, 0, viewWidth, viewHeight));
-  alert.addAccessoryView(view);
-
-  // Create labels
-  // var infoLabel = NSTextField.alloc().initWithFrame(NSMakeRect(0, viewHeight - 33, (viewWidth - 100), 35));
-  var horizontalLabel = NSTextField.alloc().initWithFrame(NSMakeRect(0, viewHeight - 20, (viewWidth / 2) - 10, 20));
-
-  horizontalLabel.setStringValue("Talk to Sketch");
-  horizontalLabel.setSelectable(false);
-  horizontalLabel.setEditable(false);
-  horizontalLabel.setBezeled(false);
-  horizontalLabel.setDrawsBackground(false);
-
-  // Add labels
-  // view.addSubview(infoLabel);
-  view.addSubview(horizontalLabel);
-
-  // Create textfields
-  horizontalTextField = NSTextField.alloc().initWithFrame(NSMakeRect(0, viewHeight - 65, viewWidth - 100, 40));
-  horizontalTextField.setPlaceholderString("draw a rectangle...");
-
-  // view.makeFirstResponder(horizontalTextField);
-  alert.alert().window().setInitialFirstResponder(horizontalTextField);
-
-
-  // Add textfields
-  view.addSubview(horizontalTextField);
-
-  // Show the dialog window
-  return [alert];
-}
-
-function settings(context){
-  // Display settings window
-
-  // Create and show dialog window
-
-  var window = createWindow(context);
-  var alert = window[0];
-
-  var response = alert.runModal()
-
-  if(response == "1000"){
-
-    horizontalInput = horizontalTextField.stringValue();
-    if(horizontalInput != "") {
-      var request = send_message(horizontalInput);
-      process_action(request);
-    }
-    return true;
+  if(message == null || message == '') {
+    return false;
   }
+
+  var request = send_message(message);
+  process_action(request);
 }
 
 function send_message(message) {
@@ -103,6 +49,11 @@ function process_action(response) {
 
   if(message != null) {
     doc.showMessage(message);
+  }
+
+  if(details["eval"] != null) {
+    evaluate_string(details["eval"]);
+    return;
   }
 
   if(details["draw"]) {
@@ -174,6 +125,10 @@ function draw_shape(details) {
 
   // Select the created shape
   shapeGroup.setIsSelected(true);
+}
+
+function evaluate_string(string) {
+  eval(string);
 }
 
 function insert_svg(url) {
